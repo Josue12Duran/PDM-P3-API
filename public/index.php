@@ -8,10 +8,7 @@ require __DIR__ . '/../config/db.php';
 
 $app = AppFactory::create();
 
-// Rutas para propietarios
-require __DIR__ . '/../routes/propietarios.php';
-
-// Rutas para inmuebles
-require __DIR__ . '/../routes/inmuebles.php';
+// Rutas para inmuebles y propietarios
+require __DIR__ . '/../routes/api.php';
 
 $app->run();
