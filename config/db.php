@@ -3,7 +3,7 @@
 class DB {
     private $host = 'localhost:33060';
     private $user = 'root';
-    private $pass = '0000';
+    private $pass = 'Api_DC20026';
     private $dbname = 'casa_top';
 
     public function connect() {
