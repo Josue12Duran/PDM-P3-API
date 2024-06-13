@@ -33,7 +33,8 @@ $app->get('/propietarios/{idPropietario}', function (Request $request, Response 
 });
 
 $app->post('/propietarios', function (Request $request, Response $response, array $args) {
-    $queryParams = $request->getQueryParams();
+    $body = $request->getBody();
+    $queryParams = json_decode($body, true);
     $nombres = $queryParams['nombres'];
     $apellidos = $queryParams['apellidos'];
     $fechaNacimiento = $queryParams['fechaNacimiento'];
@@ -58,7 +59,7 @@ $app->post('/propietarios', function (Request $request, Response $response, arra
         $propietario = $statement->execute();
 
         $db = null;
-        $response->getBody()->write(json_encode(array('message' => 'Propietario creado correctamente')));
+        $response->getBody()->write(json_encode(array($propietario, 'message' => 'Propietario creado correctamente')));
 
         return $response
             ->withHeader('Content-Type', 'application/json')
@@ -100,7 +101,8 @@ $app->get('/inmuebles', function (Request $request, Response $response) {
 });
 
 $app->post('/inmuebles', function (Request $request, Response $response, array $args) {
-    $queryParams = $request->getQueryParams();
+    $body = $request->getBody();
+    $queryParams = json_decode($body, true);
     $departamento = $queryParams['departamento'];
     $municipio = $queryParams['municipio'];
     $residencia = $queryParams['residencia'];
@@ -127,7 +129,7 @@ $app->post('/inmuebles', function (Request $request, Response $response, array $
         $inmueble = $statement->execute();
 
         $db = null;
-        $response->getBody()->write(json_encode(array('message' => 'Inmueble creado correctamente')));
+        $response->getBody()->write(json_encode(array($inmueble, 'message' => 'Inmueble creado correctamente')));
 
         return $response
             ->withHeader('Content-Type', 'application/json')
